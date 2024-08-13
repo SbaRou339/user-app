@@ -1,39 +1,50 @@
 <!-- app.component.html -->
-<div *ngIf="!selectedUser">
-  <h2>User List</h2>
-  <ul>
-    <li *ngFor="let user of users" (click)="fetchPosts(user.id)">
+<div *ngIf="!selectedUser" class="container">
+  <h2 class="center-align">User List</h2>
+  <ul class="collection">
+    <li
+      *ngFor="let user of users"
+      class="collection-item"
+      (click)="fetchPosts(user.id)"
+    >
       <strong>{{ user.name }}</strong> - {{ user.email }}
     </li>
   </ul>
 </div>
 
-<div *ngIf="selectedUser">
-  <button (click)="goBack()">← Back to User List</button>
+<div *ngIf="selectedUser" class="container">
+  <button class="btn waves-effect waves-light" (click)="goBack()" style="margin-top: 20px; text-align: center;">
+    ← Back
+  </button>
 
-  <h3>Details for {{ selectedUser.name }}</h3>
-  <p><strong>Username:</strong> {{ selectedUser.username }}</p>
-  <p><strong>Email:</strong> {{ selectedUser.email }}</p>
-  <p><strong>Phone:</strong> {{ selectedUser.phone }}</p>
-  <p><strong>Website:</strong> {{ selectedUser.website }}</p>
-  <p><strong>Company:</strong> {{ selectedUser.company.name }}</p>
-  <p><strong>Address:</strong> {{ selectedUser.address.street }}, 
-    {{ selectedUser.address.suite }}, 
-    {{ selectedUser.address.city }}, 
-    {{ selectedUser.address.zipcode }}
-  </p>
+  <div class="center-align">
+    <h3 class="center-align">{{ selectedUser.name }}</h3>
+    <p><strong>Username:</strong> {{ selectedUser.username }}</p>
+    <p><strong>Email:</strong> {{ selectedUser.email }}</p>
+    <p><strong>Phone:</strong> {{ selectedUser.phone }}</p>
+    <p>
+      <strong>Website:</strong>
+      <a href="http://{{ selectedUser.website }}" target="_blank"> {{ selectedUser.website }}</a>
+    </p>
+    <p><strong>Company:</strong> {{ selectedUser.company.name }}</p>
+    <p>
+      <strong>Address:</strong> {{ selectedUser.address.street }},
+      {{ selectedUser.address.suite }}, {{ selectedUser.address.city }},
+      {{ selectedUser.address.zipcode }}
+    </p>
 
-  <div *ngIf="posts.length">
-    <h3>Posts by {{ selectedUser.name }}</h3>
-    <ul>
-      <li *ngFor="let post of posts">
-        <strong>{{ post.title }}</strong>
-        <p>{{ post.body }}</p>
-      </li>
-    </ul>
-  </div>
+    <div *ngIf="posts.length">
+      <h3 class="center-align">Posts</h3>
+      <ul class="collection">
+        <li *ngFor="let post of posts" class="collection-item">
+          <strong>{{ post.title }}</strong>
+          <p>{{ post.body }}</p>
+        </li>
+      </ul>
+    </div>
 
-  <div *ngIf="!posts.length">
-    <p>No posts found for this user.</p>
+    <div *ngIf="!posts.length" class="card-panel red lighten-4">
+      <p>No posts found for this user.</p>
+    </div>
   </div>
 </div>
