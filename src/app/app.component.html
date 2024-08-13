@@ -1,11 +1,15 @@
 <!-- app.component.html -->
 <div *ngIf="!selectedUser" class="container">
-  <h2 class="center-align">User List</h2>
-  <ul class="collection">
+  <h2 class="center-align teal-text text-darken-3">User List</h2>
+  <ul class="collection with-header z-depth-1">
     <li
       *ngFor="let user of users"
-      class="collection-item"
+      class="collection-item hoverable"
       (click)="fetchPosts(user.id)"
+      style="cursor: pointer; transition: background-color 0.3s ease;"
+      (mouseover)="user.hovered = true"
+      (mouseleave)="user.hovered = false"
+      [ngStyle]="{ 'background-color': user.hovered ? '#e0f7fa' : 'white' }"
     >
       <strong>{{ user.name }}</strong> - {{ user.email }}
     </li>
@@ -13,12 +17,12 @@
 </div>
 
 <div *ngIf="selectedUser" class="container">
-  <button class="btn waves-effect waves-light" (click)="goBack()" style="margin-top: 20px; text-align: center;">
+  <button class="btn waves-effect waves-light teal darken-3" (click)="goBack()" style="margin-top: 20px; text-align: center;">
     ← Back
   </button>
 
-  <div class="center-align">
-    <h3 class="center-align">{{ selectedUser.name }}</h3>
+  <div class="center-align card-panel teal lighten-5 z-depth-2" style="margin-top: 20px;">
+    <h3 class="center-align teal-text text-darken-3">{{ selectedUser.name }}</h3>
     <p><strong>Username:</strong> {{ selectedUser.username }}</p>
     <p><strong>Email:</strong> {{ selectedUser.email }}</p>
     <p><strong>Phone:</strong> {{ selectedUser.phone }}</p>
@@ -33,10 +37,10 @@
       {{ selectedUser.address.zipcode }}
     </p>
 
-    <div *ngIf="posts.length">
-      <h3 class="center-align">Posts</h3>
-      <ul class="collection">
-        <li *ngFor="let post of posts" class="collection-item">
+    <div *ngIf="posts.length" class="posts-section">
+      <h3 class="center-align teal-text text-darken-3">Posts</h3>
+      <ul class="collection z-depth-1">
+        <li *ngFor="let post of posts" class="collection-item hoverable" style="transition: background-color 0.3s ease;" (mouseover)="post.hovered = true" (mouseleave)="post.hovered = false"  [ngStyle]="{ 'background-color': post.hovered ? '#e0f7fa' : 'white' }">
           <strong>{{ post.title }}</strong>
           <p>{{ post.body }}</p>
         </li>

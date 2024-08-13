@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { NgIf, NgFor } from '@angular/common';
+import { NgIf, NgFor, NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [NgIf, NgFor],
+  imports: [NgIf, NgFor, NgStyle],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
