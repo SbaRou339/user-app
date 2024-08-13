@@ -36,6 +36,16 @@
       {{ selectedUser.address.suite }}, {{ selectedUser.address.city }},
       {{ selectedUser.address.zipcode }}
     </p>
+    <p>
+      <strong>My Location:</strong>
+      <a 
+        href="https://www.google.com/maps?q={{ selectedUser.address.geo.lat }},{{ selectedUser.address.geo.lng }}" 
+        target="_blank"
+        class="blue-text text-darken-2"
+      >
+        Open in Google Maps
+      </a>
+    </p>
 
     <div *ngIf="posts.length" class="posts-section">
       <h3 class="center-align teal-text text-darken-3">Posts</h3>
